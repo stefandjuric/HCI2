@@ -1,0 +1,102 @@
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\HCI2.exe.config
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\HCI2.exe
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\HCI2.pdb
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\MahApps.Metro.dll
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\MaterialDesignColors.dll
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\MaterialDesignThemes.MahApps.dll
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\System.Windows.Interactivity.dll
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\MahApps.Metro.pdb
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\MahApps.Metro.xml
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\HCI 2 GUI\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\HCI2.csprojResolveAssemblyReference.cache
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\MainWindow.g.cs
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\App.g.cs
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\HCI2_MarkupCompile.cache
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\HCI2_MarkupCompile.lref
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\App.baml
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\MainWindow.baml
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\HCI2.g.resources
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\HCI2.Properties.Resources.resources
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\HCI2.csproj.GenerateResource.Cache
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\HCI2.exe
+D:\HCI 2 GUI\HCI2\HCI2\obj\Debug\HCI2.pdb
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\HCI2.exe.config
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\HCI2.exe
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\HCI2.pdb
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\HCI2.exe
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\HCI2.pdb
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\MahApps.Metro.dll
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\MaterialDesignColors.dll
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\MaterialDesignThemes.MahApps.dll
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\MahApps.Metro.pdb
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\MahApps.Metro.xml
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\djuro\Desktop\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\HCI2.csprojResolveAssemblyReference.cache
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\MainWindow.g.cs
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\App.g.cs
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\HCI2_MarkupCompile.cache
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\HCI2_MarkupCompile.lref
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\App.baml
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\MainWindow.baml
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\HCI2.g.resources
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\HCI2.Properties.Resources.resources
+C:\Users\djuro\Desktop\HCI2\HCI2\obj\Debug\HCI2.csproj.GenerateResource.Cache
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\HCI2.exe.config
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\HCI2.exe
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\HCI2.pdb
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\HCI2.exe
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\HCI2.pdb
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\MahApps.Metro.dll
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\MaterialDesignColors.dll
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\MaterialDesignThemes.MahApps.dll
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\MahApps.Metro.pdb
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\MahApps.Metro.xml
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\HCI2.csprojResolveAssemblyReference.cache
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\MainWindow.g.cs
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\App.g.cs
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\HCI2_MarkupCompile.cache
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\HCI2_MarkupCompile.lref
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\App.baml
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\MainWindow.baml
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\HCI2.g.resources
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\HCI2.Properties.Resources.resources
+C:\Users\Q\Desktop\New folder\HCI2\HCI2\obj\Debug\HCI2.csproj.GenerateResource.Cache
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\HCI2.exe.config
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\HCI2.exe
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\HCI2.pdb
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\MahApps.Metro.dll
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\MaterialDesignColors.dll
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\MaterialDesignThemes.MahApps.dll
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\MahApps.Metro.pdb
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\MahApps.Metro.xml
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HCI2.csprojResolveAssemblyReference.cache
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\MainWindow.g.cs
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\App.g.cs
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HCI2_MarkupCompile.cache
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HCI2_MarkupCompile.lref
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\App.baml
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\MainWindow.baml
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HCI2.g.resources
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HCI2.Properties.Resources.resources
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HCI2.csproj.GenerateResource.Cache
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HCI2.exe
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HCI2.pdb
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\Window1.g.cs
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\Window1.baml
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HCI2_Content.g.cs
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HelpViewer.baml
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HelpViewer.g.cs

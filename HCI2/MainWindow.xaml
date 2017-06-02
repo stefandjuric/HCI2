@@ -1,0 +1,1031 @@
+﻿<Controls:MetroWindow x:Class="HCI2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI2"
+        xmlns:val="clr-namespace:HCI2.Validation"
+        mc:Ignorable="d"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:ControlzEx="clr-namespace:ControlzEx;assembly=MahApps.Metro" 
+        Title="CvetaStyle" Height="430" Width="750" Closed="MetroWindow_Closed"
+                      local:HelpProvider.HelpKey="Forma">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    <Controls:MetroWindow.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ListViewStyle" TargetType="{x:Type ListView}">
+                <Setter Property="BorderBrush" Value="#CC119EDA"/>
+                <Setter Property="BorderThickness" Value="5"/>
+                <Setter Property="Background" Value="#FF252525"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+
+            <Style x:Key="StackPanel" TargetType="{x:Type StackPanel}">
+                <Setter Property="Margin" Value="0,0,10,0"/>
+            </Style>
+
+            <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Margin" Value="0,0,10,0"/>
+            </Style>
+
+            <Style x:Key="SmallBottomMargin" TargetType="{x:Type Grid}">
+                <Setter Property="Margin" Value="0,0,0,5"/>
+            </Style>
+
+            <Style x:Key="LargeBottomMargin" TargetType="{x:Type Grid}">
+                <Setter Property="Margin" Value="0,0,0,30"/>
+            </Style>
+
+            <Style x:Key="ListBoxStyle" TargetType="{x:Type ListBox}">
+                <Setter Property="BorderBrush" Value="#FFFFFFFF"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Margin" Value="0,5,0,0"/>
+                <Setter Property="MaxHeight" Value="80"/>
+                <Setter Property="Background" Value="#FF252525"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+
+            <Style x:Key="LabelColumnStyle" TargetType="{x:Type ColumnDefinition}">
+                <Setter Property="Width" Value="0.7*"/>
+            </Style>
+
+            <Style x:Key="DataColumnStyle" TargetType="{x:Type ColumnDefinition}">
+                <Setter Property="Width" Value="1*"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Controls:MetroWindow.Resources>
+    <Grid>
+
+        <TabControl>
+
+
+            <!-- Main Tab -->
+            <TabItem Name="MainTab" Header="Home">
+                <Grid Margin="20,20,20,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Name="MainOptions" Width="1*"/>
+                        <ColumnDefinition Name="MainSeparator" Width="0.15*"/>
+                        <ColumnDefinition Name="MainTableview" Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Main options grid-->
+                    <Grid Grid.Column="0">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel Style="{StaticResource StackPanel}">
+
+                                <!-- Classroom -->
+                                <Grid Style="{StaticResource LargeBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Classroom:" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+                                    <ComboBox x:Name="MainClassroom_CB" Grid.Column="1" FontSize="12" SelectionChanged="mainClassroom_CB_Changed" local:HelpProvider.HelpKey="MainClassroom_CB"/>
+                                </Grid>
+
+                                <!-- Classroom name-->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Label:" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="MainClassroomName_TB"
+                                             IsReadOnly="True"
+                                             FontSize="12" local:HelpProvider.HelpKey="MainClassroomName_TB"/>
+                                </Grid>
+
+                                <!-- Classroom seats -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0"  Content="Seats:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="MainClassRoomSeats_TB" 
+                                             IsReadOnly="True"
+                                             FontSize="12" local:HelpProvider.HelpKey="MainClassRoomSeats_TB"/>
+                                </Grid>
+
+                                <!-- Classroom OS -->
+                                <Grid Style="{StaticResource LargeBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="OS:" Grid.Column="0" Style="{StaticResource LabelStyle}" Margin="46,0,0,0" RenderTransformOrigin="-0.071,0.462" HorizontalAlignment="Left"/>
+                                    <TextBox x:Name="MainClassRoomOS_TB"
+                                             IsReadOnly="True"
+                                             FontSize="12" local:HelpProvider.HelpKey="MainClassRoomOS_CB" Grid.ColumnSpan="2" Margin="88,0,0,0"/>
+
+                                </Grid>
+
+                                <!-- Classroom projector -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Projector:" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+                                    <CheckBox Grid.Column="1" HorizontalAlignment="Center"
+                                              x:Name="MainClassroomProjector_CB"
+                                              FontSize="12"
+                                              IsEnabled="False" local:HelpProvider.HelpKey="MainClassroomProjector_CB"/>
+                                </Grid>
+
+                                <!-- Classroom board -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Board:" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+                                    <CheckBox Grid.Column="1" HorizontalAlignment="Center"
+                                              x:Name="MainClassroomBoard_CB"
+                                              FontSize="12"
+                                              IsEnabled="False" local:HelpProvider.HelpKey="MainClassroomBoard_CB"/>
+                                </Grid>
+
+                                <!-- Classroom board smart -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Smart board:" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+                                    <CheckBox Grid.Column="1" HorizontalAlignment="Center"
+                                              x:Name="MainClassroomSmartBoard_CB"
+                                              FontSize="12"
+                                              IsEnabled="False" local:HelpProvider.HelpKey="MainClassroomSmartBoard_CB"/>
+                                </Grid>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+
+                    <!-- Separator -->
+                    <Grid Grid.Column="1" Margin="0,0,0,0">
+                        <Separator HorizontalAlignment="Center"
+                                   Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                    </Grid>
+
+                    <!-- Main tableview grid-->
+                    <Grid Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="132*"/>
+                            <ColumnDefinition Width="89*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.2*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="5*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Day checkbox-->
+                        <Grid Style="{StaticResource SmallBottomMargin}" Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Day:" Style="{StaticResource LabelStyle}"/>
+                            <ComboBox x:Name="ClassroomDay_CB" SelectionChanged="ClassroomDay_CB_SelectionChanged" 
+                                      FontSize="12" Grid.ColumnSpan="2" Margin="216,0,5,0"
+                                      local:HelpProvider.HelpKey="ClassroomDay_CB_SelectionChanged">
+                                <ComboBoxItem Content="Monday"/>
+                                <ComboBoxItem Content="Tuesday"/>
+                                <ComboBoxItem Content="Wednesday"/>
+                                <ComboBoxItem Content="Thursday"/>
+                                <ComboBoxItem Content="Friday"/>
+                                <ComboBoxItem Content="Saturday"/>
+                            </ComboBox>
+                        </Grid>
+
+                        <!-- First listview-->
+                        <ListView x:Name="freeSubjects_listView" ItemsSource="{Binding Predmeti}" Grid.Row="1" Style="{StaticResource ListViewStyle}" 
+                                  MouseMove="freeSubjects_listView_MouseMove" PreviewMouseLeftButtonDown="freeSubjects_listView_PreviewMouseLeftButtonDown"
+                                  local:HelpProvider.HelpKey="freeSubjects_listView" Grid.ColumnSpan="2">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                                        <TextBlock Text=", " />
+                                        <TextBlock Text="{Binding Descriptions}"/>
+                                        <TextBlock Text=" (" />
+                                        <TextBlock Text="{Binding Id}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
+                                        <TextBlock Text=")" />
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <!-- Second listview-->
+                        <ListView x:Name="distributedSubjects_listView" ItemsSource="{Binding Items}" AllowDrop="True" 
+                                  Grid.Row="2" Style="{StaticResource ListViewStyle}" DragEnter="distributedSubjects_listView_DragEnter" 
+                                  Drop="distributedSubjects_listView_Drop" local:HelpProvider.HelpKey="distributedSubjects_listView" Grid.ColumnSpan="2">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <TextBlock Text="{Binding HoursStart}" FontWeight="Bold" />
+                                        <TextBlock Text=":" />
+                                        <TextBlock Text="{Binding MinutesStart}" />
+                                        <TextBlock Text=" - " />
+                                        <TextBlock Text="{Binding HoursStart}" />
+                                        <TextBlock Text=":" />
+                                        <TextBlock Text="{Binding MinutesEnd}" />
+                                        <TextBlock Text="  -  " />
+                                        <TextBlock Text="{Binding Subject.Name}" />
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+
+
+            <!-- Classroom Tab-->
+            <TabItem Name="ClassroomTab" Header="Classroom">
+                <Grid Margin="20,20,20,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Name="ClassroomOptions" Width="1*"/>
+                        <ColumnDefinition Name="ClassroomVSeparator" Width="0.15*"/>
+                        <ColumnDefinition Name="ClassroomTableview" Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Name="ClassroomContent" Height="10*"/>
+                        <RowDefinition Name="ClassroomHSeparator" Height="1*"/>
+                        <RowDefinition Name="ClassroomButtons" Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Classroom options grid-->
+                    <Grid Grid.Column="0" Grid.Row="0" VerticalAlignment="Top">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                            <StackPanel Style="{StaticResource StackPanel}">
+
+                                <!-- Classroom description -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Description:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="ClassroomDescription_TB" FontSize="12" local:HelpProvider.HelpKey="ClassroomDescription_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="ClassromDescription" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:ClassroomDescriptionValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Classroom seats -->
+                                <Grid Style="{StaticResource LargeBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Seats:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="ClassroomSeats_TB" FontSize="12" local:HelpProvider.HelpKey="ClassroomSeats_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="ClassromDescription" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:ClassroomSeatsValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Classroom OS -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label  Grid.Column="0" Content="OS:" Style="{StaticResource LabelStyle}"/>
+                                    <ComboBox Grid.Column="1" 
+                                              x:Name="ClassroomOS_CB"  
+                                              FontSize="12" SelectedIndex="0" local:HelpProvider.HelpKey="ClassroomOS_CB"/>
+                                </Grid>
+
+                                <!-- Classroom projector -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Projector:"  Style="{StaticResource LabelStyle}"/>
+                                    <CheckBox Grid.Column="1" HorizontalAlignment="Center"
+                                              x:Name="ClassroomProjector_CB" 
+                                              FontSize="12" local:HelpProvider.HelpKey="ClassroomProjector_CB"/>
+                                </Grid>
+
+                                <!-- Classroom board -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Board:" Style="{StaticResource LabelStyle}"/>
+                                    <CheckBox Grid.Column="1" HorizontalAlignment="Center"
+                                              x:Name="ClassroomBoard_CB" 
+                                              FontSize="12" local:HelpProvider.HelpKey="ClassroomBoard_CB"/>
+                                </Grid>
+
+                                <!-- Classroom board smart -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Smart board:" Style="{StaticResource LabelStyle}"/>
+                                    <CheckBox Grid.Column="1" HorizontalAlignment="Center"
+                                              x:Name="ClassroomSmartBoard_CB" 
+                                              FontSize="12" local:HelpProvider.HelpKey="ClassroomSmartBoard_CB"/>
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                    </Grid>
+
+                    <!-- Vertical Separator -->
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="0,0,0,0">
+                        <Separator HorizontalAlignment="Center"
+                                   Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                    </Grid>
+
+                    <!-- Classroom tableview grid-->
+                    <StackPanel Grid.Column="2" Grid.Row="0">
+
+                        <!-- Search -->
+                        <Grid Style="{StaticResource SmallBottomMargin}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" x:Name="ClassroomSearch_TB" FontSize="12" local:HelpProvider.HelpKey="ClassroomSearch_TB"/>
+                            <Button Grid.Column="1" VerticalAlignment="Center"
+                                    Margin="10,0,0,0"
+                                    Content="Search" FontSize="10" 
+                                    BorderBrush="{x:Null}" Foreground="White" Background="#CC119EDA" 
+                                    Click="ClassroomSearchBtn_Click"/>
+                        </Grid>
+
+                        <!-- Table -->
+                        <DataGrid x:Name="Classroom_DG" SelectionChanged="Classroom_DG_SelectionChanged"
+                                  MaxHeight="200" Padding="5" Margin="0,10,0,0"
+                                  BorderBrush="#CC119EDA" BorderThickness="5" 
+                                  FontSize="12" CanUserAddRows="False" local:HelpProvider.HelpKey="Classroom_DG"/>
+
+                    </StackPanel>
+
+                    <!-- Horizontal Separator -->
+                    <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+                        <Separator/>
+                    </Grid>
+
+                    <!-- Buttons -->
+                    <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
+                                Orientation="Horizontal" HorizontalAlignment="Center">
+
+                        <Button Click="ClassroomUpdateBtn_Click"
+                                Content="Update" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CC119EDA" BorderBrush="{x:Null}"/>
+
+                        <Button x:Name="ClassroomAddBtn" Click="ClassroomAddBtn_Click"
+                                Content="Add" FontSize="10" 
+                                Width="100" MaxHeight="50" Margin="5"
+                                Background="#CC119EDA"  BorderBrush="{x:Null}"/>
+
+                        <Button Click="ClassroomRemoveBtn_Click"
+                                Content="Remove" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CCDA1111" BorderBrush="{x:Null}"/>
+
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+
+            <!-- Course Tab-->
+            <TabItem Name="CourseTab" Header="Courses">
+                <Grid Margin="20,20,20,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Name="CourseOptions" Width="1*"/>
+                        <ColumnDefinition Name="CourseVSeparator" Width="0.15*"/>
+                        <ColumnDefinition Name="CourseTableview" Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Name="CourseContent" Height="10*"/>
+                        <RowDefinition Name="CourseHSeparator" Height="1*"/>
+                        <RowDefinition Name="CourseButtons" Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Course options grid-->
+                    <Grid Grid.Column="0" Grid.Row="0" VerticalAlignment="Top">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel Style="{StaticResource StackPanel}">
+
+                                <!-- Course name -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Name:" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="CourseName_TB" FontSize="12" local:HelpProvider.HelpKey="CourseName_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="CurseName" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:CurseNameValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Course introduction date -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Date:" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+                                    <DatePicker Grid.Column="1" x:Name="CourseFoundationDate_DP" 
+                                                FontSize="12" local:HelpProvider.HelpKey="CourseFoundationDate_DP"/>
+                                </Grid>
+
+                                <!-- Course Description -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Description:" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="CourseDescription_TB" TextWrapping="Wrap" AcceptsReturn="True" FontSize="12" 
+                                             local:HelpProvider.HelpKey="CourseDescription_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="CurseDescription" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:CurseDescriptionValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+
+                    <!-- Vertical Separator -->
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="0,0,0,0">
+                        <Separator HorizontalAlignment="Center"
+                                   Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                    </Grid>
+
+                    <!-- Course tableview grid-->
+                    <StackPanel Grid.Column="2" Grid.Row="0">
+
+                        <!-- Search -->
+                        <Grid Style="{StaticResource SmallBottomMargin}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" x:Name="CourseSearch_TB" FontSize="12" local:HelpProvider.HelpKey="CourseSearch_TB"/>
+                            <Button Click="CourseSearchBtn_Click" 
+                                    Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"
+                                    Content="Search" FontSize="10" 
+                                    BorderBrush="{x:Null}" Foreground="White" Background="#CC119EDA"/>
+                        </Grid>
+
+                        <!-- Table -->
+                        <DataGrid x:Name="Course_DG" SelectionChanged="Course_DG_SelectionChanged"
+                                    MaxHeight="200" Padding="5" Margin="0,10,0,0"
+                                    BorderBrush="#CC119EDA" BorderThickness="5" 
+                                    FontSize="12" CanUserAddRows="False"
+                                    local:HelpProvider.HelpKey="Course_DG"/>
+
+                    </StackPanel>
+
+                    <!-- Horizontal Separator -->
+                    <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+                        <Separator/>
+                    </Grid>
+
+                    <!-- Buttons -->
+                    <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
+                                Orientation="Horizontal" HorizontalAlignment="Center">
+
+                        <Button Click="CourseUpdateBtn_Click"
+                                Content="Update" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CC119EDA" BorderBrush="{x:Null}"/>
+
+                        <Button Click="CourseAddBtn_Click"
+                                Content="Add" FontSize="10" 
+                                Width="100" MaxHeight="50" Margin="5"
+                                Background="#CC119EDA"  BorderBrush="{x:Null}"/>
+
+                        <Button Click="CourseRemoveBtn_Click"
+                                Content="Remove" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CCDA1111" BorderBrush="{x:Null}"/>
+
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+
+            <!-- Subjects Tab -->
+            <TabItem Name="SubjectsTab" Header="Subjects">
+                <Grid Margin="20,20,20,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Name="SubjectsOptions" Width="1*"/>
+                        <ColumnDefinition Name="SubjectsVSeparator" Width="0.15*"/>
+                        <ColumnDefinition Name="SubjectsTableview" Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Name="SubjectsContent" Height="10*"/>
+                        <RowDefinition Name="SubjectsHSeparator" Height="1*"/>
+                        <RowDefinition Name="SubjectsButtons" Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Subjects options grid-->
+                    <Grid Grid.Column="0" Grid.Row="0" VerticalAlignment="Top">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel Style="{StaticResource StackPanel}">
+
+                                <!-- Subject name -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Name:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="SubjectName_TB" FontSize="12" local:HelpProvider.HelpKey="SubjectName_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="SubjectName" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:SubjectNameValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Subject course -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Course:" Style="{StaticResource LabelStyle}"/>
+                                    <ComboBox Grid.Column="1" x:Name="SubjectCourse_CB"  FontSize="12" SelectedIndex="0" local:HelpProvider.HelpKey="SubjectCourse_CB"/>
+                                </Grid>
+
+                                <!-- Subject description -->
+                                <Grid Style="{StaticResource LargeBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Description:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="SubjectDescription_TB" TextWrapping="Wrap" AcceptsReturn="True" 
+                                             FontSize="12" local:HelpProvider.HelpKey="SubjectDescription_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="SubjectDescription" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:SubjectDescriptionValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Subject duration -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Duration:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="SubjectDuration_TB" FontSize="12" local:HelpProvider.HelpKey="SubjectDuration_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="SubjectDuration" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:SubjectDurationValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Subject number of terms -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Terms:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="SubjectTerms_TB" FontSize="12" local:HelpProvider.HelpKey="SubjectTerms_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="SubjectTerms" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:SubjectTermsValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Subject group size -->
+                                <Grid Style="{StaticResource LargeBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Group size:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="SubjectGroupSize_TB" FontSize="12" local:HelpProvider.HelpKey="SubjectGroupSize_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="SubjectGroupSize" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:SubjectGroupSizeValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Subject OS -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="OS:" Style="{StaticResource LabelStyle}"/>
+                                    <ComboBox Grid.Column="1" x:Name="SubjectOS_CB" FontSize="12" SelectedIndex="0" local:HelpProvider.HelpKey="SubjectOS_CB"/>
+                                </Grid>
+
+                                <!-- Subject needed software -->
+                                <Grid Style="{StaticResource LargeBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="0" Content="Software:" Style="{StaticResource LabelStyle}"/>
+
+                                    <Grid Grid.Column="1" Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="1.3*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <ComboBox Grid.Column="0" Grid.Row="0"
+                                                  x:Name="SubjectSoftware_CB" 
+                                                  FontSize="12" local:HelpProvider.HelpKey="SubjectSoftware_CB"/>
+
+                                        <Button Grid.Column="1" Grid.Row="0"
+                                                Content="Add" Margin="5,0,0,0"
+                                                Background="#CC119EDA" BorderBrush="{x:Null}" Click="SubjectAddSoftwareBtn_Click"/>
+                                    </Grid>
+
+
+                                    <Label Grid.Column="0" Grid.Row="1" Content="Added:" Style="{StaticResource LabelStyle}"/>
+
+                                    <ListBox Grid.Column="1" Grid.Row="1"
+                                             x:Name="SubjectCurrentSoftware_LB"
+                                             Style="{StaticResource ListBoxStyle}"
+                                             local:HelpProvider.HelpKey="SubjectCurrentSoftware_LB">
+                                    </ListBox>
+
+                                </Grid>
+
+                                <!-- Subject projector -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0"  Content="Projector:" Style="{StaticResource LabelStyle}"/>
+                                    <CheckBox Grid.Column="1" x:Name="SubjectProjector_CB" HorizontalAlignment="Center"/>
+                                </Grid>
+
+                                <!-- Subject board -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Board:" Style="{StaticResource LabelStyle}"/>
+                                    <CheckBox Grid.Column="1" x:Name="SubjectBoard_CB" HorizontalAlignment="Center"/>
+                                </Grid>
+
+                                <!-- Subject smartboard -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Smart board:" Style="{StaticResource LabelStyle}"/>
+                                    <CheckBox Grid.Column="1" x:Name="SubjectSmartBoard_CB" HorizontalAlignment="Center"/>
+                                </Grid>
+
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+
+                    <!-- Vertical Separator -->
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="0,0,0,0">
+                        <Separator HorizontalAlignment="Center"
+                                   Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                    </Grid>
+
+                    <!-- Course tableview grid-->
+                    <StackPanel Grid.Column="2" Grid.Row="0">
+
+                        <!-- Search -->
+                        <Grid Style="{StaticResource SmallBottomMargin}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" x:Name="SubjectSearch_TB" FontSize="12" 
+                                     local:HelpProvider.HelpKey="SubjectSearch_TB"/>
+                            <Button Click="SubjectSearchBtn_Click" 
+                                    Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"
+                                    Content="Search" FontSize="10" 
+                                    BorderBrush="{x:Null}" Foreground="White" Background="#CC119EDA"/>
+                        </Grid>
+
+                        <!-- Table -->
+                        <DataGrid x:Name="Subject_DG" SelectionChanged="Subject_DG_SelectionChanged"
+                                  MaxHeight="200" Padding="5" Margin="0,10,0,0"
+                                  BorderBrush="#CC119EDA" BorderThickness="5" 
+                                  FontSize="12" CanUserAddRows="False"
+                                  local:HelpProvider.HelpKey="Subject_DG"/>
+
+                    </StackPanel>
+
+                    <!-- Horizontal Separator -->
+                    <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+                        <Separator/>
+                    </Grid>
+
+                    <!-- Buttons -->
+                    <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
+                                Orientation="Horizontal" HorizontalAlignment="Center">
+
+                        <Button Click="SubjectUpdateBtn_Click"
+                                Content="Update" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CC119EDA" BorderBrush="{x:Null}"/>
+
+                        <Button Click="SubjectAddBtn_Click"
+                                Content="Add" FontSize="10" 
+                                Width="100" MaxHeight="50" Margin="5"
+                                Background="#CC119EDA"  BorderBrush="{x:Null}"/>
+
+                        <Button Click="SubjectRemoveBtn_Click"
+                                Content="Remove" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CCDA1111" BorderBrush="{x:Null}"/>
+
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+
+            <!-- Software tab -->
+            <TabItem Name="SofwareTab" Header="Software">
+                <Grid Margin="20,20,20,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Name="SoftwareOptions" Width="1*"/>
+                        <ColumnDefinition Name="SoftwareVSeparator" Width="0.15*"/>
+                        <ColumnDefinition Name="SoftwareTableview" Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Name="SoftwareContent" Height="10*"/>
+                        <RowDefinition Name="SoftwareHSeparator" Height="1*"/>
+                        <RowDefinition Name="SoftwareButtons" Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Software options grid-->
+                    <Grid Grid.Column="0" Grid.Row="0" VerticalAlignment="Top">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel Style="{StaticResource StackPanel}">
+
+                                <!-- Software name -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Name:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="SoftwareName_TB" FontSize="12" local:HelpProvider.HelpKey="SoftwareName_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="SoftwareName" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:SoftwaretNameValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Software OS -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="OS:" Style="{StaticResource LabelStyle}"/>
+                                    <ComboBox Grid.Column="1" x:Name="SoftwareOS_CB" FontSize="12" SelectedIndex="0" local:HelpProvider.HelpKey="SoftwareOS_CB"/>
+                                </Grid>
+
+                                <!-- Software description -->
+                                <Grid Style="{StaticResource LargeBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Description:"  Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="SoftwareDescription_TB"
+                                             TextWrapping="Wrap" AcceptsReturn="True" FontSize="12"
+                                             local:HelpProvider.HelpKey="SoftwareDescription_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="SoftwareDescription" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:SoftwaretDescriptionValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Software web site -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Web site:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="SoftwareWebSite_TB" FontSize="12"
+                                             local:HelpProvider.HelpKey="SoftwareWebSite_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="SoftwareWebSite" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:SoftwaretWebSiteValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Software publisher -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Publisher:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="SoftwarePublisher_TB" FontSize="12"
+                                             local:HelpProvider.HelpKey="SoftwarePublisher_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="SoftwarePublisher" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:SoftwaretPublisherValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+                                <!-- Software publishing date -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Published:" Style="{StaticResource LabelStyle}"/>
+                                    <DatePicker Grid.Column="1" x:Name="SoftwarePublishingDate_DP" FontSize="12"
+                                                local:HelpProvider.HelpKey="SoftwarePublishingDate_DP"/>
+                                </Grid>
+
+                                <!-- Software price -->
+                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Price:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Grid.Column="1" x:Name="SoftwarePrice_TB" FontSize="12"
+                                             local:HelpProvider.HelpKey="SoftwarePrice_TB">
+                                        <TextBox.Text>
+                                            <Binding Path="SoftwarePrice" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <val:SoftwaretPriceValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+
+                    <!-- Vertical Separator -->
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="0,0,0,0">
+                        <Separator HorizontalAlignment="Center"
+                                   Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                    </Grid>
+
+                    <!-- Software tableview grid-->
+                    <StackPanel Grid.Column="2" Grid.Row="0">
+
+                        <!-- Search -->
+                        <Grid Style="{StaticResource SmallBottomMargin}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="SoftwareSearch_TB" Grid.Column="0" FontSize="14"
+                                     local:HelpProvider.HelpKey="SoftwareSearch_TB"/>
+                            <Button Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"
+                                    Content="Search" FontSize="10" 
+                                    BorderBrush="{x:Null}" Foreground="White" Background="#CC119EDA"/>
+                        </Grid>
+
+                        <!-- Table -->
+                        <DataGrid x:Name="Software_DG" SelectionChanged="Software_DG_SelectionChanged"
+                                  MaxHeight="200" Padding="5" Margin="0,10,0,0"
+                                  BorderBrush="#CC119EDA" BorderThickness="5" 
+                                  FontSize="12" CanUserAddRows="False"
+                                  local:HelpProvider.HelpKey="Software_DG"/>
+
+                    </StackPanel>
+
+                    <!-- Horizontal Separator -->
+                    <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+                        <Separator/>
+                    </Grid>
+
+                    <!-- Buttons -->
+                    <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
+                                Orientation="Horizontal" HorizontalAlignment="Center">
+
+                        <Button Click="SoftwareUpdateBtn_Click"
+                                Content="Update" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CC119EDA" BorderBrush="{x:Null}"/>
+
+                        <Button Click="SoftwareAddBtn_Click"
+                                Content="Add" FontSize="10" 
+                                Width="100" MaxHeight="50" Margin="5"
+                                Background="#CC119EDA"  BorderBrush="{x:Null}"/>
+
+                        <Button Click="SoftwareRemoveBtn_Click"
+                                Content="Remove" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CCDA1111" BorderBrush="{x:Null}"/>
+
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+        </TabControl>
+
+    </Grid>
+</Controls:MetroWindow>
