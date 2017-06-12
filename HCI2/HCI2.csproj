@@ -192,6 +192,7 @@
     <Content Include="Help\SubjectSoftware_CB.htm" />
     <Content Include="Help\SubjectTerms_TB.htm" />
     <Content Include="Help\Subject_DG.htm" />
+    <Content Include="tutorial.html" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

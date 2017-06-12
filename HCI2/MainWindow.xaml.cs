@@ -62,7 +62,7 @@ namespace HCI2
             readAppConfig();
             InitializeComponent();
             this.DataContext = this;
-            Predmeti = new ObservableCollection<Subject>(appConfig.Subjects);
+            Predmeti = new ObservableCollection<Subject>();
             Predmeti1 = new ObservableCollection<Subject>();
             Items = new ObservableCollection<ScheduleItem>();
             mainClassroom_CB_init();
@@ -72,8 +72,7 @@ namespace HCI2
             softwareDataGridInit();
             classroomOS_CB_init();
             softwareOS_CB_init();
-            subjectOS_CB_init();
-            
+            subjectOS_CB_init();    
         }
 
         public void readAppConfig()
@@ -179,10 +178,32 @@ namespace HCI2
             set;
         }
 
+        private bool classromIsValid()
+        {
+            if (ClassroomDescription_TB.Text.Equals(""))
+            {
+                MessageBox.Show("Fild for description must not be empty!!");
+                return false;
+            }
+            if (ClassroomSeats_TB.Text.Equals(""))
+            {
+                MessageBox.Show("Fild for seats must not be empty!!");
+                return false;
+            }
+            int brojRadnihMjesta;
+            if (!int.TryParse(ClassroomSeats_TB.Text, out brojRadnihMjesta))
+            {
+                MessageBox.Show("Fild for seats must be integer!!");
+                return false;
+            }
+            return true;
+        }
+
         private void ClassroomAddBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (!classromIsValid()) return;
             string opis = ClassroomDescription_TB.Text;
-            int brojRadnihMjesta = Int32.Parse(ClassroomSeats_TB.Text);
+            int brojRadnihMjesta= Int32.Parse(ClassroomSeats_TB.Text);
             bool windows = false;
             bool linux = false;
             if (ClassroomOS_CB.SelectedIndex == 0) windows = true;
@@ -225,6 +246,7 @@ namespace HCI2
         {
             if (selectedClassroom != "")
             {
+                if (!classromIsValid()) return;
                 foreach (Classroom elm in appConfig.Classrooms)
                 {
                     if (elm.Id.Equals(selectedClassroom))
@@ -254,6 +276,11 @@ namespace HCI2
                 Classroom_DG.ItemsSource = null;
                 Classroom_DG.ItemsSource = listaUcionica;
                 mainClassroom_CB_init();
+            }
+            else
+            {
+                MessageBox.Show("Select classroom for update!!");
+                return;
             }
         }
 
@@ -307,8 +334,25 @@ namespace HCI2
             set;
         }
 
+        private bool curseIsValid()
+        {
+            if (CourseName_TB.Text.Equals(""))
+            {
+                MessageBox.Show("Fild for name must not be empty!!");
+                return false;
+            }
+
+            if (CourseDescription_TB.Text.Equals(""))
+            {
+                MessageBox.Show("Fild for description must not be empty!!");
+                return false;
+            }
+            return true;
+        }
+
         private void CourseAddBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (!curseIsValid()) return;
             string naziv = CourseName_TB.Text;
             DateTime datumOsnivanja = DateTime.Parse(CourseFoundationDate_DP.Text);
             string opis = CourseDescription_TB.Text;
@@ -335,6 +379,7 @@ namespace HCI2
         {
             if (selectedCourse != "")
             {
+                if (!curseIsValid()) return;
                 foreach (Course elm in appConfig.Curses)
                 {
                     if (elm.Id.Equals(selectedCourse))
@@ -351,6 +396,11 @@ namespace HCI2
                 Course_DG.ItemsSource = null;
                 Course_DG.ItemsSource = listaSmerova;
                 subjectCourse_CB_init();
+            }
+            else
+            {
+                MessageBox.Show("Select curse for update!!");
+                return;
             }
         }
 
@@ -419,8 +469,43 @@ namespace HCI2
             get;
             set;
         }
+
+        private bool subjectIsValid()
+        {
+            if (SubjectName_TB.Text.Equals(""))
+            {
+                MessageBox.Show("Fild for name must not be empty!!");
+                return false;
+            }
+            if (SubjectDescription_TB.Text.Equals(""))
+            {
+                MessageBox.Show("Fild for description must not be empty!!");
+                return false;
+            }
+            int trajanje;
+            if (!int.TryParse(SubjectDuration_TB.Text, out trajanje))
+            {
+                MessageBox.Show("Fild for duration must be integer!!");
+                return false;
+            }
+            int brojTermina;
+            if (!int.TryParse(SubjectTerms_TB.Text, out brojTermina))
+            {
+                MessageBox.Show("Fild for terms must be integer!!");
+                return false;
+            }
+            int velicinaGrupe;
+            if (!int.TryParse(SubjectGroupSize_TB.Text, out velicinaGrupe))
+            {
+                MessageBox.Show("Fild for group size must be integer!!");
+                return false;
+            }
+            return true;
+        }
+
         private void SubjectAddBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (!subjectIsValid()) return;
             string naziv = SubjectName_TB.Text;
             Course curs = appConfig.Curses[SubjectCourse_CB.SelectedIndex];
             string opis = SubjectDescription_TB.Text;
@@ -440,6 +525,7 @@ namespace HCI2
             Subject_DG.ItemsSource = listaPredmeta;
             softver = new List<SoftwareItem>();
             freeSubjects_listView_init();
+            distributedSubjects_listView_init();
         }
 
         private void Subject_DG_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -475,6 +561,7 @@ namespace HCI2
             {
                 foreach (Subject elm in appConfig.Subjects)
                 {
+                    if (!subjectIsValid()) return;
                     if (elm.Id.Equals(selectedSubject))
                     {
                         elm.Name = SubjectName_TB.Text;
@@ -499,6 +586,11 @@ namespace HCI2
                 Subject_DG.ItemsSource = listaPredmeta;
                 freeSubjects_listView_init();
             }
+            else
+            {
+                MessageBox.Show("Select subject for update!!");
+                return;
+            }
         }
 
         private void SubjectRemoveBtn_Click(object sender, RoutedEventArgs e)
@@ -515,9 +607,28 @@ namespace HCI2
                 listaPredmeta.Clear();
                 foreach (Subject elm in this.appConfig.Subjects)
                     listaPredmeta.Add(elm);
+                foreach(Classroom cr in this.appConfig.Classrooms)
+                {
+                    if (this.classroom != null)
+                    {
+                        if (cr.Id.Equals(this.classroom.Id)) this.classroom = cr;
+                    }
+                    List<ScheduleItem> temp = new List<ScheduleItem>();
+                    foreach(ScheduleItem si in cr.Schedule.Items)
+                    {
+                        Console.WriteLine("lowenbrau");
+                        if (si.Subject.Id.Equals(selectedSubject)) temp.Add(si);
+                    }
+                    foreach (ScheduleItem si in temp)
+                    {
+                        Console.WriteLine("usaoo    ------------------");
+                        cr.Schedule.Items.Remove(si);
+                    }
+                }
                 Subject_DG.ItemsSource = null;
                 Subject_DG.ItemsSource = listaPredmeta;
                 freeSubjects_listView_init();
+                distributedSubjects_listView_init();
             }
         }
 
@@ -580,6 +691,37 @@ namespace HCI2
             set;
         }
 
+        private bool softwareIsValid()
+        {
+            if (SoftwareName_TB.Text.Equals(""))
+            {
+                MessageBox.Show("Fild for name must not be empty!!");
+                return false;
+            }
+            if (SoftwarePublisher_TB.Text.Equals(""))
+            {
+                MessageBox.Show("Fild for publisher must not be empty!!");
+                return false;
+            }
+            if (SoftwareWebSite_TB.Text.Equals(""))
+            {
+                MessageBox.Show("Fild for web site must not be empty!!");
+                return false;
+            }
+            double cijena;
+            if (!double.TryParse(SoftwarePrice_TB.Text, out cijena))
+            {
+                MessageBox.Show("Fild for price must be double!!");
+                return false;
+            }
+            if (SoftwareDescription_TB.Text.Equals(""))
+            {
+                MessageBox.Show("Fild for description must not be empty!!");
+                return false;
+            }
+            return true;
+        }
+
         private void Software_DG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Software_DG.SelectedItem != null)
@@ -597,6 +739,7 @@ namespace HCI2
 
         private void SoftwareAddBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (!softwareIsValid()) return;
             string naziv = SoftwareName_TB.Text;
             int os = SoftwareOS_CB.SelectedIndex;
             string proizvodjac = SoftwarePublisher_TB.Text;
@@ -617,6 +760,7 @@ namespace HCI2
             {
                 foreach (SoftwareItem elm in appConfig.SoftwareItems)
                 {
+                    if (!softwareIsValid()) return;
                     if (elm.Id.Equals(selectedSoftwareItem))
                     {
                         elm.Name = SoftwareName_TB.Text;
@@ -635,6 +779,10 @@ namespace HCI2
                 Software_DG.ItemsSource = null;
                 Software_DG.ItemsSource = listaSoftvera;
                 subjectSoftware_TB_init();
+            }
+            else
+            {
+                MessageBox.Show("Select software for update!!");
             }
         }
 
@@ -697,6 +845,7 @@ namespace HCI2
             MainClassroomBoard_CB.IsChecked = classroom.Board;
             MainClassroomSmartBoard_CB.IsChecked = classroom.SmartBoart;
             freeSubjects_listView_init();
+            distributedSubjects_listView_init();
         }
 
         public void freeSubjects_listView_init()
@@ -723,8 +872,35 @@ namespace HCI2
             }
         }
 
+        public void distributedSubjects_listView_init()
+        {
+            if (this.classroom != null)
+            {
+                int day = ClassroomDay_CB.SelectedIndex;
+                Items.Clear();
+                foreach (ScheduleItem c in this.classroom.Schedule.Items)
+                {
+                    if (c.Day == day)
+                    {
+                        Console.WriteLine(c.Subject.Name+"   ++++++++++++");
+                        Items.Add(c);
+                    }
+                }
+            }
+        }
+
         private void freeSubjects_listView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if(MainClassroom_CB.SelectedIndex==-1)
+            {
+                MessageBox.Show("You must select classroom!!");
+                return;
+            }
+            if (ClassroomDay_CB.SelectedIndex == -1)
+            {
+                MessageBox.Show("You must select day in week!!");
+                return;
+            }
             startPoint = e.GetPosition(null);
         }
 
@@ -819,6 +995,34 @@ namespace HCI2
                 Console.WriteLine(str);
                 HelpProvider.ShowHelp(str, this);
             }
+        }
+
+        //second list viw delete item
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            int idx = distributedSubjects_listView.SelectedIndex;
+            string subjectId="";
+            foreach(Classroom c in this.appConfig.Classrooms)
+            {
+               if(c.Id.Equals(this.classroom.Id))
+                {
+                    this.classroom = c;
+                    subjectId = c.Schedule.Items[idx].Subject.Id;
+                    c.Schedule.Items.RemoveAt(idx);
+                    break;
+                }
+            }
+            foreach(Subject s in this.appConfig.Subjects)
+            {
+                if(s.Id.Equals(subjectId))
+                {
+                    s.CurrentNumber++;
+                    break;
+                }
+            }
+            freeSubjects_listView_init();
+            distributedSubjects_listView_init();
         }
     }
 }

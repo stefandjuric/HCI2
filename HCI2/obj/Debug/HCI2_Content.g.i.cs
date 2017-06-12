@@ -53,5 +53,6 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("help/subjectsoftware_cb.htm")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("help/subjectterms_tb.htm")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("help/subject_dg.htm")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tutorial.html")]
 
 

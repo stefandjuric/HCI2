@@ -78,9 +78,9 @@ namespace HCI2
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string[] text = comboBox.SelectedItem.ToString().Split(':');
-            int time = Int32.Parse(text[0]) * 60 + Int32.Parse(text[1]) + this.subject.Duration;
-            int hours = time / 60;
-            int minutes = time - hours * 60;
+            int time = Int32.Parse(text[0]) * 60 + Int32.Parse(text[1]);
+            int hours = (time + this.subject.Duration) / 60;
+            int minutes = (time + this.subject.Duration) - hours * 60;
             label2.Content = hours + ":" + minutes;
             this.startTime = time;
             this.endTime = time + this.subject.Duration;
@@ -92,6 +92,13 @@ namespace HCI2
                  this.startTime, this.endTime, this.day);
             Items.Add(si);
             this.subject.CurrentNumber--;
+            foreach(Subject s in this.appConfig.Subjects)
+            {
+                if(s.Id.Equals(this.subject.Id))
+                {
+                    s.CurrentNumber = this.subject.CurrentNumber;
+                }
+            }
             this.Close();
         }
 

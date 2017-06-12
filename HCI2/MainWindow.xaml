@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:HCI2"
         xmlns:val="clr-namespace:HCI2.Validation"
         mc:Ignorable="d"
@@ -212,6 +213,14 @@
                         <ListView x:Name="freeSubjects_listView" ItemsSource="{Binding Predmeti}" Grid.Row="1" Style="{StaticResource ListViewStyle}" 
                                   MouseMove="freeSubjects_listView_MouseMove" PreviewMouseLeftButtonDown="freeSubjects_listView_PreviewMouseLeftButtonDown"
                                   local:HelpProvider.HelpKey="freeSubjects_listView" Grid.ColumnSpan="2">
+                            <ListView.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        Select any subject you want to drag into selected classroom
+                                        (There are only items that correspond to selected classroom)
+                                    </TextBlock>
+                                </StackPanel>
+                            </ListView.ToolTip>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
@@ -230,6 +239,18 @@
                         <ListView x:Name="distributedSubjects_listView" ItemsSource="{Binding Items}" AllowDrop="True" 
                                   Grid.Row="2" Style="{StaticResource ListViewStyle}" DragEnter="distributedSubjects_listView_DragEnter" 
                                   Drop="distributedSubjects_listView_Drop" local:HelpProvider.HelpKey="distributedSubjects_listView" Grid.ColumnSpan="2">
+                            <ListView.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        Schedule of subject in selected classroom for selected day in week.
+                                    </TextBlock>
+                                </StackPanel>
+                            </ListView.ToolTip>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Remove" Click="MenuItem_Click"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
@@ -237,7 +258,7 @@
                                         <TextBlock Text=":" />
                                         <TextBlock Text="{Binding MinutesStart}" />
                                         <TextBlock Text=" - " />
-                                        <TextBlock Text="{Binding HoursStart}" />
+                                        <TextBlock Text="{Binding HoursEnd}" />
                                         <TextBlock Text=":" />
                                         <TextBlock Text="{Binding MinutesEnd}" />
                                         <TextBlock Text="  -  " />
@@ -381,14 +402,32 @@
                                     Margin="10,0,0,0"
                                     Content="Search" FontSize="10" 
                                     BorderBrush="{x:Null}" Foreground="White" Background="#CC119EDA" 
-                                    Click="ClassroomSearchBtn_Click"/>
+                                    Click="ClassroomSearchBtn_Click">
+                                <Button.ToolTip>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                            Searching for classroom which contain text in box.
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Button.ToolTip>
+                            </Button>
                         </Grid>
 
                         <!-- Table -->
                         <DataGrid x:Name="Classroom_DG" SelectionChanged="Classroom_DG_SelectionChanged"
                                   MaxHeight="200" Padding="5" Margin="0,10,0,0"
                                   BorderBrush="#CC119EDA" BorderThickness="5" 
-                                  FontSize="12" CanUserAddRows="False" local:HelpProvider.HelpKey="Classroom_DG"/>
+                                  FontSize="12" CanUserAddRows="False" local:HelpProvider.HelpKey="Classroom_DG"
+                                  IsReadOnly="True" SelectionMode="Single">
+                            <DataGrid.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        View all classrooms(read only). To update 
+                                        classroom you must selected that classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataGrid.ToolTip>
+                        </DataGrid>
 
                     </StackPanel>
 
@@ -404,17 +443,41 @@
                         <Button Click="ClassroomUpdateBtn_Click"
                                 Content="Update" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CC119EDA" BorderBrush="{x:Null}"/>
+                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for saving changes on the selected classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                         <Button x:Name="ClassroomAddBtn" Click="ClassroomAddBtn_Click"
                                 Content="Add" FontSize="10" 
                                 Width="100" MaxHeight="50" Margin="5"
-                                Background="#CC119EDA"  BorderBrush="{x:Null}"/>
+                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for adding new classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                         <Button Click="ClassroomRemoveBtn_Click"
                                 Content="Remove" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CCDA1111" BorderBrush="{x:Null}"/>
+                                Background="#CCDA1111" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for removing selected classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                     </StackPanel>
                 </Grid>
@@ -467,7 +530,8 @@
                                     </Grid.ColumnDefinitions>
                                     <Label Content="Date:" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
                                     <DatePicker Grid.Column="1" x:Name="CourseFoundationDate_DP" 
-                                                FontSize="12" local:HelpProvider.HelpKey="CourseFoundationDate_DP"/>
+                                                FontSize="12" local:HelpProvider.HelpKey="CourseFoundationDate_DP"
+                                                SelectedDate="{x:Static sys:DateTime.Now}"/>
                                 </Grid>
 
                                 <!-- Course Description -->
@@ -512,7 +576,15 @@
                             <Button Click="CourseSearchBtn_Click" 
                                     Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"
                                     Content="Search" FontSize="10" 
-                                    BorderBrush="{x:Null}" Foreground="White" Background="#CC119EDA"/>
+                                    BorderBrush="{x:Null}" Foreground="White" Background="#CC119EDA">
+                                <Button.ToolTip>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                            Searching for course which contain text in box.
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Button.ToolTip>
+                            </Button>
                         </Grid>
 
                         <!-- Table -->
@@ -520,7 +592,17 @@
                                     MaxHeight="200" Padding="5" Margin="0,10,0,0"
                                     BorderBrush="#CC119EDA" BorderThickness="5" 
                                     FontSize="12" CanUserAddRows="False"
-                                    local:HelpProvider.HelpKey="Course_DG"/>
+                                    local:HelpProvider.HelpKey="Course_DG"
+                                    IsReadOnly="True" SelectionMode="Single">
+                            <DataGrid.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        View all curses(read only). To update 
+                                        curse you must selected that curse.
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataGrid.ToolTip>
+                        </DataGrid>
 
                     </StackPanel>
 
@@ -536,17 +618,41 @@
                         <Button Click="CourseUpdateBtn_Click"
                                 Content="Update" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CC119EDA" BorderBrush="{x:Null}"/>
+                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for saving changes on the selected course.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                         <Button Click="CourseAddBtn_Click"
                                 Content="Add" FontSize="10" 
                                 Width="100" MaxHeight="50" Margin="5"
-                                Background="#CC119EDA"  BorderBrush="{x:Null}"/>
+                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for adding new course.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                         <Button Click="CourseRemoveBtn_Click"
                                 Content="Remove" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CCDA1111" BorderBrush="{x:Null}"/>
+                                Background="#CCDA1111" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for removing selected course.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                     </StackPanel>
                 </Grid>
@@ -783,7 +889,15 @@
                             <Button Click="SubjectSearchBtn_Click" 
                                     Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"
                                     Content="Search" FontSize="10" 
-                                    BorderBrush="{x:Null}" Foreground="White" Background="#CC119EDA"/>
+                                    BorderBrush="{x:Null}" Foreground="White" Background="#CC119EDA">
+                                <Button.ToolTip>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                            Searching for subject which contain text in box.
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Button.ToolTip>
+                            </Button>
                         </Grid>
 
                         <!-- Table -->
@@ -791,7 +905,17 @@
                                   MaxHeight="200" Padding="5" Margin="0,10,0,0"
                                   BorderBrush="#CC119EDA" BorderThickness="5" 
                                   FontSize="12" CanUserAddRows="False"
-                                  local:HelpProvider.HelpKey="Subject_DG"/>
+                                  local:HelpProvider.HelpKey="Subject_DG"
+                                  IsReadOnly="True" SelectionMode="Single">
+                            <DataGrid.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        View all subjects(read only). To update 
+                                        subject you must selected that subject.
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataGrid.ToolTip>
+                        </DataGrid>
 
                     </StackPanel>
 
@@ -807,17 +931,41 @@
                         <Button Click="SubjectUpdateBtn_Click"
                                 Content="Update" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CC119EDA" BorderBrush="{x:Null}"/>
+                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for saving changes on the selected subject.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                         <Button Click="SubjectAddBtn_Click"
                                 Content="Add" FontSize="10" 
                                 Width="100" MaxHeight="50" Margin="5"
-                                Background="#CC119EDA"  BorderBrush="{x:Null}"/>
+                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for adding new subject.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                         <Button Click="SubjectRemoveBtn_Click"
                                 Content="Remove" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CCDA1111" BorderBrush="{x:Null}"/>
+                                Background="#CCDA1111" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for removing selected subject.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                     </StackPanel>
                 </Grid>
@@ -850,7 +998,7 @@
                                         <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
                                         <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Content="Name:" Style="{StaticResource LabelStyle}"/>
+                                    <Label Grid.Column="0" Content="Namećć:" Style="{StaticResource LabelStyle}"/>
                                     <TextBox Grid.Column="1" x:Name="SoftwareName_TB" FontSize="12" local:HelpProvider.HelpKey="SoftwareName_TB">
                                         <TextBox.Text>
                                             <Binding Path="SoftwareName" UpdateSourceTrigger="PropertyChanged">
@@ -938,7 +1086,8 @@
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Content="Published:" Style="{StaticResource LabelStyle}"/>
                                     <DatePicker Grid.Column="1" x:Name="SoftwarePublishingDate_DP" FontSize="12"
-                                                local:HelpProvider.HelpKey="SoftwarePublishingDate_DP"/>
+                                                local:HelpProvider.HelpKey="SoftwarePublishingDate_DP"
+                                                SelectedDate="{x:Static sys:DateTime.Now}"/>
                                 </Grid>
 
                                 <!-- Software price -->
@@ -984,7 +1133,15 @@
                                      local:HelpProvider.HelpKey="SoftwareSearch_TB"/>
                             <Button Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"
                                     Content="Search" FontSize="10" 
-                                    BorderBrush="{x:Null}" Foreground="White" Background="#CC119EDA"/>
+                                    BorderBrush="{x:Null}" Foreground="White" Background="#CC119EDA" Click="SoftwareSearchBtn_Click">
+                                <Button.ToolTip>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                            Searching for software which contain text in box.
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Button.ToolTip>
+                            </Button>
                         </Grid>
 
                         <!-- Table -->
@@ -992,7 +1149,17 @@
                                   MaxHeight="200" Padding="5" Margin="0,10,0,0"
                                   BorderBrush="#CC119EDA" BorderThickness="5" 
                                   FontSize="12" CanUserAddRows="False"
-                                  local:HelpProvider.HelpKey="Software_DG"/>
+                                  local:HelpProvider.HelpKey="Software_DG"
+                                  IsReadOnly="True" SelectionMode="Single">
+                            <DataGrid.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        View all softwares(read only). To update 
+                                        software you must selected that software.
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataGrid.ToolTip>
+                        </DataGrid>
 
                     </StackPanel>
 
@@ -1008,17 +1175,41 @@
                         <Button Click="SoftwareUpdateBtn_Click"
                                 Content="Update" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CC119EDA" BorderBrush="{x:Null}"/>
+                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for saving changes on the selected software.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                         <Button Click="SoftwareAddBtn_Click"
                                 Content="Add" FontSize="10" 
                                 Width="100" MaxHeight="50" Margin="5"
-                                Background="#CC119EDA"  BorderBrush="{x:Null}"/>
+                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for adding new software.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                         <Button Click="SoftwareRemoveBtn_Click"
                                 Content="Remove" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CCDA1111" BorderBrush="{x:Null}"/>
+                                Background="#CCDA1111" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for removing selected software.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
 
                     </StackPanel>
                 </Grid>
