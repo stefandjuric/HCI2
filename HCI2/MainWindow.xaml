@@ -418,7 +418,9 @@
                                   MaxHeight="200" Padding="5" Margin="0,10,0,0"
                                   BorderBrush="#CC119EDA" BorderThickness="5" 
                                   FontSize="12" CanUserAddRows="False" local:HelpProvider.HelpKey="Classroom_DG"
-                                  IsReadOnly="True" SelectionMode="Single">
+                                  IsReadOnly="True" SelectionMode="Single"
+                                  AutoGenerateColumns="true"
+                                  AutoGeneratingColumn="DataGrid_OnAutoGeneratingColumn">
                             <DataGrid.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
@@ -830,7 +832,13 @@
                                              x:Name="SubjectCurrentSoftware_LB"
                                              Style="{StaticResource ListBoxStyle}"
                                              local:HelpProvider.HelpKey="SubjectCurrentSoftware_LB">
+                                        <ListBox.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Remove" Click="MenuItem_Click_1" />
+                                            </ContextMenu>
+                                        </ListBox.ContextMenu>
                                     </ListBox>
+                                    
 
                                 </Grid>
 
@@ -906,7 +914,9 @@
                                   BorderBrush="#CC119EDA" BorderThickness="5" 
                                   FontSize="12" CanUserAddRows="False"
                                   local:HelpProvider.HelpKey="Subject_DG"
-                                  IsReadOnly="True" SelectionMode="Single">
+                                  IsReadOnly="True" SelectionMode="Single"
+                                  AutoGenerateColumns="true"
+                                  AutoGeneratingColumn="DataGrid1_OnAutoGeneratingColumn">
                             <DataGrid.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
@@ -998,7 +1008,7 @@
                                         <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
                                         <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Content="Namećć:" Style="{StaticResource LabelStyle}"/>
+                                    <Label Grid.Column="0" Content="Name:" Style="{StaticResource LabelStyle}"/>
                                     <TextBox Grid.Column="1" x:Name="SoftwareName_TB" FontSize="12" local:HelpProvider.HelpKey="SoftwareName_TB">
                                         <TextBox.Text>
                                             <Binding Path="SoftwareName" UpdateSourceTrigger="PropertyChanged">
@@ -1150,7 +1160,9 @@
                                   BorderBrush="#CC119EDA" BorderThickness="5" 
                                   FontSize="12" CanUserAddRows="False"
                                   local:HelpProvider.HelpKey="Software_DG"
-                                  IsReadOnly="True" SelectionMode="Single">
+                                  IsReadOnly="True" SelectionMode="Single"
+                                  AutoGenerateColumns="true"
+                                  AutoGeneratingColumn="DataGrid2_OnAutoGeneratingColumn">
                             <DataGrid.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">

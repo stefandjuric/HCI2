@@ -110,6 +110,7 @@ namespace HCI2
             listaUcionica = new ObservableCollection<Classroom>(this.appConfig.Classrooms);
             Classroom_DG.ItemsSource = null;
             Classroom_DG.ItemsSource = listaUcionica;
+            //Classroom_DG.Columns[8].Visibility;
         }
 
         public void classroomOS_CB_init()
@@ -182,18 +183,18 @@ namespace HCI2
         {
             if (ClassroomDescription_TB.Text.Equals(""))
             {
-                MessageBox.Show("Fild for description must not be empty!!");
+                MessageBox.Show("Field for description must not be empty!!");
                 return false;
             }
             if (ClassroomSeats_TB.Text.Equals(""))
             {
-                MessageBox.Show("Fild for seats must not be empty!!");
+                MessageBox.Show("Field for seats must not be empty!!");
                 return false;
             }
             int brojRadnihMjesta;
             if (!int.TryParse(ClassroomSeats_TB.Text, out brojRadnihMjesta))
             {
-                MessageBox.Show("Fild for seats must be integer!!");
+                MessageBox.Show("Field for seats must be integer!!");
                 return false;
             }
             return true;
@@ -338,13 +339,13 @@ namespace HCI2
         {
             if (CourseName_TB.Text.Equals(""))
             {
-                MessageBox.Show("Fild for name must not be empty!!");
+                MessageBox.Show("Field for name must not be empty!!");
                 return false;
             }
 
             if (CourseDescription_TB.Text.Equals(""))
             {
-                MessageBox.Show("Fild for description must not be empty!!");
+                MessageBox.Show("Field for description must not be empty!!");
                 return false;
             }
             return true;
@@ -474,30 +475,30 @@ namespace HCI2
         {
             if (SubjectName_TB.Text.Equals(""))
             {
-                MessageBox.Show("Fild for name must not be empty!!");
+                MessageBox.Show("Field for name must not be empty!!");
                 return false;
             }
             if (SubjectDescription_TB.Text.Equals(""))
             {
-                MessageBox.Show("Fild for description must not be empty!!");
+                MessageBox.Show("Field for description must not be empty!!");
                 return false;
             }
             int trajanje;
             if (!int.TryParse(SubjectDuration_TB.Text, out trajanje))
             {
-                MessageBox.Show("Fild for duration must be integer!!");
+                MessageBox.Show("Field for duration must be integer!!");
                 return false;
             }
             int brojTermina;
             if (!int.TryParse(SubjectTerms_TB.Text, out brojTermina))
             {
-                MessageBox.Show("Fild for terms must be integer!!");
+                MessageBox.Show("Field for terms must be integer!!");
                 return false;
             }
             int velicinaGrupe;
             if (!int.TryParse(SubjectGroupSize_TB.Text, out velicinaGrupe))
             {
-                MessageBox.Show("Fild for group size must be integer!!");
+                MessageBox.Show("Field for group size must be integer!!");
                 return false;
             }
             return true;
@@ -643,13 +644,21 @@ namespace HCI2
         private void ClassroomDay_CB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int day = ClassroomDay_CB.SelectedIndex;
-            Items.Clear();
-            foreach (ScheduleItem c in this.classroom.Schedule.Items)
+            if (this.classroom != null)
             {
-                if (c.Day == day)
+                Items.Clear();
+                foreach (ScheduleItem c in this.classroom.Schedule.Items)
                 {
-                    Items.Add(c);
+                    if (c.Day == day)
+                    {
+                        Items.Add(c);
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("You must select classroom!!");
+                return;
             }
         }
 
@@ -695,28 +704,28 @@ namespace HCI2
         {
             if (SoftwareName_TB.Text.Equals(""))
             {
-                MessageBox.Show("Fild for name must not be empty!!");
+                MessageBox.Show("Field for name must not be empty!!");
                 return false;
             }
             if (SoftwarePublisher_TB.Text.Equals(""))
             {
-                MessageBox.Show("Fild for publisher must not be empty!!");
+                MessageBox.Show("Field for publisher must not be empty!!");
                 return false;
             }
             if (SoftwareWebSite_TB.Text.Equals(""))
             {
-                MessageBox.Show("Fild for web site must not be empty!!");
+                MessageBox.Show("Field for web site must not be empty!!");
                 return false;
             }
             double cijena;
             if (!double.TryParse(SoftwarePrice_TB.Text, out cijena))
             {
-                MessageBox.Show("Fild for price must be double!!");
+                MessageBox.Show("Field for price must be double!!");
                 return false;
             }
             if (SoftwareDescription_TB.Text.Equals(""))
             {
-                MessageBox.Show("Fild for description must not be empty!!");
+                MessageBox.Show("Field for description must not be empty!!");
                 return false;
             }
             return true;
@@ -831,21 +840,24 @@ namespace HCI2
         private void mainClassroom_CB_Changed(object sender, SelectionChangedEventArgs e)
         {
             int index = MainClassroom_CB.SelectedIndex;
-            Classroom classroom = appConfig.Classrooms[index];
-            this.classroom = classroom;
-            this.currentClassroom = classroom.Id;
-            MainClassroomName_TB.Text = classroom.Description;
-            MainClassRoomSeats_TB.Text = classroom.NumberOfWorkplace.ToString();
-            if (classroom.Windows == true && classroom.Linux == false) MainClassRoomOS_TB.Text="Windows";
-            if (classroom.Windows == false && classroom.Linux == true) MainClassRoomOS_TB.Text = "Linux";
-            if (classroom.Windows == true && classroom.Linux == true) MainClassRoomOS_TB.Text = "Cross-platform";
-            Console.WriteLine("Windows: " + classroom.Windows);
-            Console.WriteLine("Linux: " + classroom.Linux);
-            MainClassroomProjector_CB.IsChecked = classroom.Projector;
-            MainClassroomBoard_CB.IsChecked = classroom.Board;
-            MainClassroomSmartBoard_CB.IsChecked = classroom.SmartBoart;
-            freeSubjects_listView_init();
-            distributedSubjects_listView_init();
+            if (index != -1)
+            {
+                Classroom classroom = appConfig.Classrooms[index];
+                this.classroom = classroom;
+                this.currentClassroom = classroom.Id;
+                MainClassroomName_TB.Text = classroom.Description;
+                MainClassRoomSeats_TB.Text = classroom.NumberOfWorkplace.ToString();
+                if (classroom.Windows == true && classroom.Linux == false) MainClassRoomOS_TB.Text = "Windows";
+                if (classroom.Windows == false && classroom.Linux == true) MainClassRoomOS_TB.Text = "Linux";
+                if (classroom.Windows == true && classroom.Linux == true) MainClassRoomOS_TB.Text = "Cross-platform";
+                Console.WriteLine("Windows: " + classroom.Windows);
+                Console.WriteLine("Linux: " + classroom.Linux);
+                MainClassroomProjector_CB.IsChecked = classroom.Projector;
+                MainClassroomBoard_CB.IsChecked = classroom.Board;
+                MainClassroomSmartBoard_CB.IsChecked = classroom.SmartBoart;
+                freeSubjects_listView_init();
+                distributedSubjects_listView_init();
+            }
         }
 
         public void freeSubjects_listView_init()
@@ -1033,8 +1045,60 @@ namespace HCI2
 
         private void tutorialButton_Click(object sender, RoutedEventArgs e)
         {
-            Help help = new Help("bt.html");
-            help.ShowDialog();
+            System.Diagnostics.Process.Start("bt.html");
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            int idx = SubjectCurrentSoftware_LB.SelectedIndex;
+            Console.WriteLine(idx);
+            if (selectedSubject != "")
+            {
+                Subject subject = null;
+                foreach (Subject s in this.appConfig.Subjects)
+                {
+                    if (s.Id.Equals(selectedSubject))
+                    {
+                        subject = s;
+                        break;
+                    }
+                }
+
+                subject.SoftwareList.RemoveAt(idx);
+            }
+            SubjectCurrentSoftware_LB.Items.RemoveAt(idx);
+        }
+
+        private void DataGrid_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyName == "Schedule")
+            {
+                e.Column = null;
+            }
+        }
+
+        private void DataGrid1_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyName == "Course")
+            {
+                e.Column = null;
+            }
+            if (e.PropertyName == "SoftwareList")
+            {
+                e.Column = null;
+            }
+            if (e.PropertyName == "OperatingSystem")
+            {
+                e.Column = null;
+            }
+        }
+
+        private void DataGrid2_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyName == "OperatingSystem")
+            {
+                e.Column = null;
+            }
         }
     }
 }
