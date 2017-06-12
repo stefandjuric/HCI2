@@ -1229,11 +1229,14 @@
 
             <TabItem Name="HelpTab" Header="Help">
                 <Grid Margin="20,20,20,20">
-
-                    <Button x:Name="helpButton" Content="Help" Margin="265,109,296,172" Click="helpButton_Click"/>
-                    <Button x:Name="tutorialButton" Content="Tutorial" HorizontalAlignment="Left" Height="33" Margin="265,181,0,0" VerticalAlignment="Top" Width="135" Click="tutorialButton_Click"/>
-
-
+                    <StackPanel VerticalAlignment="Center">
+                        <Button x:Name="helpButton" Content="Help" 
+                                Width="250" FontSize="15" Margin="20"
+                                Click="helpButton_Click"/>
+                        <Button x:Name="tutorialButton" Content="Tutorial" 
+                                Width="250" FontSize="15" Margin="20"
+                                Click="tutorialButton_Click"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
 
