@@ -100,3 +100,5 @@ C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\GeneratedInternalTypeHelper.g.c
 C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HCI2_Content.g.cs
 C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HelpViewer.baml
 C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\HelpViewer.g.cs
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\Help.g.cs
+C:\Users\djuro\Desktop\HCI11\HCI2\HCI2\obj\Debug\Help.baml

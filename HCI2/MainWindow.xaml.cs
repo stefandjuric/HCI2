@@ -1024,5 +1024,17 @@ namespace HCI2
             freeSubjects_listView_init();
             distributedSubjects_listView_init();
         }
+
+        private void helpButton_Click(object sender, RoutedEventArgs e)
+        {
+            Help help = new Help("index.htm");
+            help.ShowDialog();
+        }
+
+        private void tutorialButton_Click(object sender, RoutedEventArgs e)
+        {
+            Help help = new Help("bt.html");
+            help.ShowDialog();
+        }
     }
 }
