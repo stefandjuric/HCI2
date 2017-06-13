@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HCI2.Model;
 using System.Collections.ObjectModel;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace HCI2
 {
@@ -88,18 +89,24 @@ namespace HCI2
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            ScheduleItem si = this.appConfig.addScheduleItem(this.currentClassroom.Id, this.subject,
-                 this.startTime, this.endTime, this.day);
-            Items.Add(si);
-            this.subject.CurrentNumber--;
-            foreach(Subject s in this.appConfig.Subjects)
+            if (comboBox.SelectedIndex != -1)
             {
-                if(s.Id.Equals(this.subject.Id))
+                ScheduleItem si = this.appConfig.addScheduleItem(this.currentClassroom.Id, this.subject,
+                     this.startTime, this.endTime, this.day);
+                Items.Add(si);
+                this.subject.CurrentNumber--;
+                foreach (Subject s in this.appConfig.Subjects)
                 {
-                    s.CurrentNumber = this.subject.CurrentNumber;
+                    if (s.Id.Equals(this.subject.Id))
+                    {
+                        s.CurrentNumber = this.subject.CurrentNumber;
+                    }
                 }
+                this.Close();
+            }else
+            {
+                MessageBox.Show("You must select start time!!");
             }
-            this.Close();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

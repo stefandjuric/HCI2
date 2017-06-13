@@ -794,10 +794,11 @@ namespace HCI2
                 int i = 0;
                 foreach (Subject elm in appConfig.Subjects)
                 {
-                    if (elm.Id.Equals(selectedSubject)) break;
+                    if (elm.Id.Equals(selectedSubject)) { Predmeti.Remove(elm); break; }//+++
                     i++;
                 }
                 appConfig.Subjects.RemoveAt(i);
+                Console.WriteLine("ppp"+appConfig.Subjects.Count);
                 listaPredmeta.Clear();
                 foreach (Subject elm in this.appConfig.Subjects)
                     listaPredmeta.Add(elm);
@@ -810,12 +811,10 @@ namespace HCI2
                     List<ScheduleItem> temp = new List<ScheduleItem>();
                     foreach(ScheduleItem si in cr.Schedule.Items)
                     {
-                        Console.WriteLine("lowenbrau");
                         if (si.Subject.Id.Equals(selectedSubject)) temp.Add(si);
                     }
                     foreach (ScheduleItem si in temp)
                     {
-                        Console.WriteLine("usaoo    ------------------");
                         cr.Schedule.Items.Remove(si);
                     }
                 }
@@ -1097,8 +1096,11 @@ namespace HCI2
         private void SubjectAddSoftwareBtn_Click(object sender, RoutedEventArgs e)
         {
             int i = SubjectSoftware_CB.SelectedIndex;
-            softver.Add(appConfig.SoftwareItems[i]);
-            SubjectCurrentSoftware_LB.Items.Add(appConfig.SoftwareItems[i].Name);
+            if (!softver.Contains(appConfig.SoftwareItems[i]))
+            {
+                softver.Add(appConfig.SoftwareItems[i]);
+                SubjectCurrentSoftware_LB.Items.Add(appConfig.SoftwareItems[i].Name);
+            }
         }
 
         private void mainClassroom_CB_Changed(object sender, SelectionChangedEventArgs e)
@@ -1145,6 +1147,7 @@ namespace HCI2
                     if (Predmeti.Contains(s) && !flag) { Predmeti.Remove(s); Console.WriteLine("USAO1"); Console.WriteLine(flag); }
                     if (!Predmeti.Contains(s) && flag) Predmeti.Add(s);
                 }
+
             }
         }
 

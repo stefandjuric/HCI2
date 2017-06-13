@@ -22,7 +22,7 @@
                 <Setter Property="BorderThickness" Value="5"/>
                 <Setter Property="Background" Value="#FF252525"/>
                 <Setter Property="FontSize" Value="12"/>
-                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="Margin" Value="0,5,0,0"/>
                 <Setter Property="Padding" Value="5"/>
             </Style>
 
@@ -210,9 +210,9 @@
                         </Grid>
 
                         <!-- First listview-->
-                        <ListView x:Name="freeSubjects_listView" ItemsSource="{Binding Predmeti}" Grid.Row="1" Style="{StaticResource ListViewStyle}" 
+                        <ListView Grid.ColumnSpan="2" Grid.Row="1" MinHeight="50" x:Name="freeSubjects_listView" ItemsSource="{Binding Predmeti}"  Style="{StaticResource ListViewStyle}" 
                                   MouseMove="freeSubjects_listView_MouseMove" PreviewMouseLeftButtonDown="freeSubjects_listView_PreviewMouseLeftButtonDown"
-                                  local:HelpProvider.HelpKey="freeSubjects_listView" Grid.ColumnSpan="2">
+                                  local:HelpProvider.HelpKey="freeSubjects_listView">
                             <ListView.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
@@ -227,18 +227,16 @@
                                         <TextBlock Text="{Binding Name}" FontWeight="Bold" />
                                         <TextBlock Text=", " />
                                         <TextBlock Text="{Binding Descriptions}"/>
-                                        <TextBlock Text=" (" />
-                                        <TextBlock Text="{Binding Id}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
-                                        <TextBlock Text=")" />
+                                        <TextBlock Text=", " />
+                                        <TextBlock Text="{Binding Id}" Cursor="Hand" />
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
 
-                        <!-- Second listview-->
-                        <ListView x:Name="distributedSubjects_listView" ItemsSource="{Binding Items}" AllowDrop="True" 
-                                  Grid.Row="2" Style="{StaticResource ListViewStyle}" DragEnter="distributedSubjects_listView_DragEnter" 
-                                  Drop="distributedSubjects_listView_Drop" local:HelpProvider.HelpKey="distributedSubjects_listView" Grid.ColumnSpan="2">
+                        <ListView Grid.ColumnSpan="2" Grid.Row="2" MinHeight="50" x:Name="distributedSubjects_listView" ItemsSource="{Binding Items}" AllowDrop="True" 
+                                   Style="{StaticResource ListViewStyle}" DragEnter="distributedSubjects_listView_DragEnter" 
+                                  Drop="distributedSubjects_listView_Drop" local:HelpProvider.HelpKey="distributedSubjects_listView">
                             <ListView.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
@@ -267,6 +265,10 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+
+
+                        <!-- Second listview-->
+                        
 
                     </Grid>
                 </Grid>
