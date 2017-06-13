@@ -595,7 +595,9 @@
                                     BorderBrush="#CC119EDA" BorderThickness="5" 
                                     FontSize="12" CanUserAddRows="False"
                                     local:HelpProvider.HelpKey="Course_DG"
-                                    IsReadOnly="True" SelectionMode="Single">
+                                    IsReadOnly="True" SelectionMode="Single"
+                                    AutoGenerateColumns="true"
+                                    AutoGeneratingColumn="DataGrid3_OnAutoGeneratingColumn">
                             <DataGrid.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
