@@ -199,6 +199,70 @@ namespace HCI2
             return true;
         }
 
+        private bool classromFilterIsValid()
+        {
+            int brojRadnihMjesta;
+            if (!ClassroomSeats_TB.Text.Equals(""))
+            { 
+                if (!int.TryParse(ClassroomSeats_TB.Text, out brojRadnihMjesta))
+                {
+                    MessageBox.Show("Field for seats must be integer!!");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void ClassroomFilterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!classromFilterIsValid()) return;
+            string opis = ClassroomDescription_TB.Text;
+            int brojRadnihMjesta = -1;
+            if (!ClassroomSeats_TB.Text.Equals(""))
+            {
+                brojRadnihMjesta = Int32.Parse(ClassroomSeats_TB.Text);
+            }
+            bool windows = false;
+            bool linux = false;
+            if (ClassroomOS_CB.SelectedIndex == 0) windows = true;
+
+            if (ClassroomOS_CB.SelectedIndex == 1) linux = true;
+
+            if (ClassroomOS_CB.SelectedIndex == 2)
+            {
+                windows = true;
+                linux = true;
+            }
+            bool projektor = ClassroomProjector_CB.IsChecked.Value;
+            bool tabla = ClassroomBoard_CB.IsChecked.Value;
+            bool pametnaTabla = ClassroomSmartBoard_CB.IsChecked.Value;
+            listaUcionica = new ObservableCollection<Classroom>();
+            foreach(Classroom c in this.appConfig.Classrooms)
+            {
+                bool flag = true;
+                if(!opis.Equals(""))
+                {
+                    if (!c.Description.Contains(opis)) flag = false;
+                }
+                if (brojRadnihMjesta != -1)
+                {
+                    if (c.NumberOfWorkplace < brojRadnihMjesta) flag = false;
+                }
+                if (c.Windows != windows) flag = false;
+                if (c.Linux != linux) flag = false;
+                if (c.Projector != projektor) flag = false;
+                if (c.Board != tabla) flag = false;
+                if (c.SmartBoart != pametnaTabla) flag = false;
+                if (flag) listaUcionica.Add(c);
+            }
+            Classroom_DG.ItemsSource = listaUcionica;
+        }
+
+        private void ClassroomClearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            classroomDataGridInit();
+        }
+
         private void ClassroomAddBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!classromIsValid()) return;
@@ -309,7 +373,7 @@ namespace HCI2
             listaUcionica.Clear();
             foreach (Classroom elm in appConfig.Classrooms)
             {
-                if (elm.Description.Contains(ClassroomSearch_TB.Text))
+                if (elm.Description.Contains(ClassroomSearch_TB.Text) || elm.Id.Contains(ClassroomSearch_TB.Text))
                     listaUcionica.Add(elm);
             }
         }
@@ -348,6 +412,35 @@ namespace HCI2
                 return false;
             }
             return true;
+        }
+
+        private void CourseFilterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string naziv = CourseName_TB.Text;
+            DateTime datumOsnivanja = DateTime.Parse(CourseFoundationDate_DP.Text);
+            string opis = CourseDescription_TB.Text;
+
+            listaSmerova = new ObservableCollection<Course>();
+            foreach (Course c in this.appConfig.Curses)
+            {
+                bool flag = true;
+                if (!naziv.Equals(""))
+                {
+                    if (!c.Name.Contains(naziv)) flag = false;
+                }
+                if (!opis.Equals(""))
+                {
+                    if (!c.Description.Contains(opis)) flag = false;
+                }
+                if (datumOsnivanja == c.DateFoundation) flag = false;
+                if (flag) listaSmerova.Add(c);
+            }
+            Course_DG.ItemsSource = listaSmerova;
+        }
+
+        private void CourseClearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            courseDataGridInit();
         }
 
         private void CourseAddBtn_Click(object sender, RoutedEventArgs e)
@@ -428,7 +521,8 @@ namespace HCI2
         {
             listaSmerova.Clear();
             foreach (Course elm in appConfig.Curses)
-                if (elm.Name.Contains(CourseSearch_TB.Text))
+                if (elm.Name.Contains(CourseSearch_TB.Text) || elm.Id.Contains(CourseSearch_TB.Text)
+                    ||elm.Description.Contains(CourseSearch_TB.Text))
                     listaSmerova.Add(elm);
         }
 
@@ -501,6 +595,106 @@ namespace HCI2
                 return false;
             }
             return true;
+        }
+
+        private bool subjectFilterIsValid()
+        {
+            int trajanje;
+            if (!SubjectDuration_TB.Text.Equals(""))
+            {
+                if (!int.TryParse(SubjectDuration_TB.Text, out trajanje))
+                {
+                    MessageBox.Show("Field for duration must be integer!!");
+                    return false;
+                }
+            }
+            int brojTermina;
+            if (!SubjectTerms_TB.Text.Equals(""))
+            {
+                if (!int.TryParse(SubjectTerms_TB.Text, out brojTermina))
+                {
+                    MessageBox.Show("Field for terms must be integer!!");
+                    return false;
+                }
+            }
+            int velicinaGrupe;
+            if (!SubjectGroupSize_TB.Text.Equals(""))
+            {
+                if (!int.TryParse(SubjectGroupSize_TB.Text, out velicinaGrupe))
+                {
+                    MessageBox.Show("Field for group size must be integer!!");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void SubjectClearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            subjectDataGridInit();
+        }
+
+        private void SubjectFilterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!subjectFilterIsValid()) return;
+            string naziv = SubjectName_TB.Text;
+            Course curs = appConfig.Curses[SubjectCourse_CB.SelectedIndex];
+            string opis = SubjectDescription_TB.Text;
+            int trajanje = -1;
+            if (!SubjectDuration_TB.Text.Equals(""))
+            {
+                trajanje = Int32.Parse(SubjectDuration_TB.Text);
+            }
+            int brojTermina = -1;
+            if (!SubjectTerms_TB.Text.Equals(""))
+            {
+                brojTermina = Int32.Parse(SubjectTerms_TB.Text);
+            }
+            bool projektor = SubjectProjector_CB.IsChecked.Value;
+            bool tabla = SubjectBoard_CB.IsChecked.Value;
+            bool pametnaTabla = SubjectSmartBoard_CB.IsChecked.Value;
+            int os = SubjectOS_CB.SelectedIndex;
+            int velicinaGrupe = -1;
+            if (!SubjectGroupSize_TB.Text.Equals(""))
+            {
+                velicinaGrupe = Int32.Parse(SubjectGroupSize_TB.Text);
+            }
+            List<SoftwareItem> software = softver;
+
+            listaPredmeta = new ObservableCollection<Subject>();
+            foreach (Subject c in this.appConfig.Subjects)
+            {
+                bool flag = true;
+                if (!naziv.Equals(""))
+                {
+                    if (!c.Name.Contains(opis)) flag = false;
+                }
+                if (!opis.Equals(""))
+                {
+                    if (!c.Descriptions.Contains(opis)) flag = false;
+                }
+                if (!curs.Id.Equals(c.Course.Id)) flag = false;
+                if (trajanje != -1)
+                {
+                    if (c.Duration < trajanje) flag = false;
+                }
+                if (brojTermina != -1)
+                {
+                    if (c.Number < brojTermina) flag = false;
+                }
+                if (c.Projector != projektor) flag = false;
+                if (c.Board != tabla) flag = false;
+                if (c.SmartBoard != pametnaTabla) flag = false;
+                if (os != c.OperatingSystem) flag = false;
+                if (velicinaGrupe != -1)
+                {
+                    if (c.NumberOfMembers < velicinaGrupe) flag = false;
+                }
+
+                if (flag) listaPredmeta.Add(c);
+
+            }
+            Subject_DG.ItemsSource = listaPredmeta;
         }
 
         private void SubjectAddBtn_Click(object sender, RoutedEventArgs e)
@@ -636,7 +830,8 @@ namespace HCI2
         {
             listaPredmeta.Clear();
             foreach (Subject elm in appConfig.Subjects)
-                if (elm.Name.Contains(SubjectSearch_TB.Text))
+                if (elm.Name.Contains(SubjectSearch_TB.Text) || elm.Id.Contains(SubjectSearch_TB.Text)
+                    ||elm.Descriptions.Contains(SubjectSearch_TB.Text))
                     listaPredmeta.Add(elm);
         }
 
@@ -730,6 +925,20 @@ namespace HCI2
             return true;
         }
 
+        private bool softwareFilterIsValid()
+        {
+            double cijena;
+            if (!SoftwarePrice_TB.Text.Equals(""))
+            {
+                if (!double.TryParse(SoftwarePrice_TB.Text, out cijena))
+                {
+                    MessageBox.Show("Field for price must be double!!");
+                    return false;
+                }
+            }
+           
+            return true;
+        }
         private void Software_DG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Software_DG.SelectedItem != null)
@@ -743,6 +952,60 @@ namespace HCI2
                 SoftwarePublishingDate_DP.Text = row.ProductionYear.ToString();
                 SoftwarePrice_TB.Text = row.Price.ToString();
             }
+        }
+
+        private void SoftwareFilterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!softwareFilterIsValid()) return;
+            string naziv = SoftwareName_TB.Text;
+            int os = SoftwareOS_CB.SelectedIndex;
+            string proizvodjac = SoftwarePublisher_TB.Text;
+            string sajt = SoftwareWebSite_TB.Text;
+            DateTime godinaIzdavanja = DateTime.Parse(SoftwarePublishingDate_DP.Text);
+
+            double cijena = -1;
+            if (!SoftwarePrice_TB.Text.Equals(""))
+            {
+                cijena = Double.Parse(SoftwarePrice_TB.Text);
+            }
+            string opis = SoftwareDescription_TB.Text;
+            listaSoftvera = new ObservableCollection<SoftwareItem>();
+            foreach (SoftwareItem c in this.appConfig.SoftwareItems)
+            {
+                bool flag = true;
+                if (!naziv.Equals(""))
+                {
+                    if (!c.Name.Contains(opis)) flag = false;
+                }
+                if (os != c.OperatingSystem) flag = false;
+                if (!proizvodjac.Equals(""))
+                {
+                    if (!c.Producer.Contains(proizvodjac)) flag = false;
+                }
+                if (!sajt.Equals(""))
+                {
+                    if (!c.Site.Contains(sajt)) flag = false;
+                }
+                if (!opis.Equals(""))
+                {
+                    if (!c.Description.Contains(opis)) flag = false;
+                }
+                
+                if (cijena != -1)
+                {
+                    if (c.Price < cijena) flag = false;
+                }
+
+                if (godinaIzdavanja != c.ProductionYear) flag = false;
+                if (flag) listaSoftvera.Add(c);
+                
+            }
+            Software_DG.ItemsSource = listaSoftvera;
+        }
+
+        private void SoftwareClearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            softwareDataGridInit();
         }
 
         private void SoftwareAddBtn_Click(object sender, RoutedEventArgs e)
@@ -822,7 +1085,9 @@ namespace HCI2
             listaSoftvera.Clear();
             foreach (SoftwareItem elm in appConfig.SoftwareItems)
             {
-                if (elm.Name.Contains(SoftwareSearch_TB.Text))
+                if (elm.Name.Contains(SoftwareSearch_TB.Text)||elm.Description.Contains(SoftwareSearch_TB.Text)
+                    ||elm.Id.Contains(SoftwareSearch_TB.Text)||elm.Producer.Contains(SoftwareSearch_TB.Text)
+                    ||elm.Site.Contains(SoftwareSearch_TB.Text))
                 {
                     listaSoftvera.Add(elm);
                 }

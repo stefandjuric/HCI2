@@ -301,7 +301,7 @@
                                         <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Content="Description:" Style="{StaticResource LabelStyle}"/>
-                                    <TextBox Grid.Column="1" x:Name="ClassroomDescription_TB" FontSize="12" local:HelpProvider.HelpKey="ClassroomDescription_TB">
+                                    <TextBox Grid.Column="1" x:Name="ClassroomDescription_TB" TextWrapping="Wrap" AcceptsReturn="True" FontSize="12" local:HelpProvider.HelpKey="ClassroomDescription_TB">
                                         <TextBox.Text>
                                             <Binding Path="ClassromDescription" UpdateSourceTrigger="PropertyChanged">
                                                 <Binding.ValidationRules>
@@ -442,10 +442,10 @@
                     <StackPanel Grid.Column="0" Grid.Row="2"
                                 Orientation="Horizontal" HorizontalAlignment="Center">
 
-                        <Button 
+                        <Button x:Name="ClassroomFilterBtn" 
                                 Content="Filter" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                                Background="#CC119EDA" BorderBrush="{x:Null}" Click="ClassroomFilterBtn_Click">
                             <Button.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
@@ -458,7 +458,7 @@
                         <Button 
                                 Content="Clear" FontSize="10" 
                                 Width="100" MaxHeight="50" Margin="5"
-                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                                Background="#CC119EDA"  BorderBrush="{x:Null}" Click="ClassroomClearBtn_Click" >
                             <Button.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
@@ -654,7 +654,7 @@
                         <Button 
                                 Content="Filter" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                                Background="#CC119EDA" BorderBrush="{x:Null}" Click="CourseFilterBtn_Click">
                             <Button.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
@@ -667,7 +667,7 @@
                         <Button 
                                 Content="Clear" FontSize="10" 
                                 Width="100" MaxHeight="50" Margin="5"
-                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                                Background="#CC119EDA"  BorderBrush="{x:Null}" Click="CourseClearBtn_Click">
                             <Button.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
@@ -1006,7 +1006,7 @@
                         <Button 
                                 Content="Filter" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                                Background="#CC119EDA" BorderBrush="{x:Null}" Click="SubjectFilterBtn_Click">
                             <Button.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
@@ -1019,7 +1019,7 @@
                         <Button 
                                 Content="Clear" FontSize="10" 
                                 Width="100" MaxHeight="50" Margin="5"
-                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                                Background="#CC119EDA"  BorderBrush="{x:Null}" Click="SubjectClearBtn_Click">
                             <Button.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
@@ -1284,7 +1284,7 @@
                         <Button 
                                 Content="Filter" FontSize="10"
                                 Width="100" MaxHeight="50" Margin="5" 
-                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                                Background="#CC119EDA" BorderBrush="{x:Null}" Click="SoftwareFilterBtn_Click">
                             <Button.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
@@ -1297,7 +1297,7 @@
                         <Button 
                                 Content="Clear" FontSize="10" 
                                 Width="100" MaxHeight="50" Margin="5"
-                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                                Background="#CC119EDA"  BorderBrush="{x:Null}" Click="SoftwareClearBtn_Click">
                             <Button.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
