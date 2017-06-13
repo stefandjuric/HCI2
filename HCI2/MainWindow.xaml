@@ -439,7 +439,38 @@
                     </Grid>
 
                     <!-- Buttons -->
-                    <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
+                    <StackPanel Grid.Column="0" Grid.Row="2"
+                                Orientation="Horizontal" HorizontalAlignment="Center">
+
+                        <Button 
+                                Content="Filter" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for saving changes on the selected classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button 
+                                Content="Clear" FontSize="10" 
+                                Width="100" MaxHeight="50" Margin="5"
+                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for adding new classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
+
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="2" Grid.Row="2"
                                 Orientation="Horizontal" HorizontalAlignment="Center">
 
                         <Button Click="ClassroomUpdateBtn_Click"
@@ -614,7 +645,39 @@
                     </Grid>
 
                     <!-- Buttons -->
-                    <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
+
+                    <StackPanel Grid.Column="0" Grid.Row="2"
+                                Orientation="Horizontal" HorizontalAlignment="Center">
+
+                        <Button 
+                                Content="Filter" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for saving changes on the selected classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button 
+                                Content="Clear" FontSize="10" 
+                                Width="100" MaxHeight="50" Margin="5"
+                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for adding new classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
+
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="2" Grid.Row="2" 
                                 Orientation="Horizontal" HorizontalAlignment="Center">
 
                         <Button Click="CourseUpdateBtn_Click"
@@ -935,7 +998,38 @@
                     </Grid>
 
                     <!-- Buttons -->
-                    <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
+                    <StackPanel Grid.Column="0" Grid.Row="2"
+                                Orientation="Horizontal" HorizontalAlignment="Center">
+
+                        <Button 
+                                Content="Filter" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for saving changes on the selected classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button 
+                                Content="Clear" FontSize="10" 
+                                Width="100" MaxHeight="50" Margin="5"
+                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for adding new classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
+
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="2" Grid.Row="2"
                                 Orientation="Horizontal" HorizontalAlignment="Center">
 
                         <Button Click="SubjectUpdateBtn_Click"
@@ -1181,7 +1275,39 @@
                     </Grid>
 
                     <!-- Buttons -->
-                    <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
+
+                    <StackPanel Grid.Column="0" Grid.Row="2"
+                                Orientation="Horizontal" HorizontalAlignment="Center">
+
+                        <Button 
+                                Content="Filter" FontSize="10"
+                                Width="100" MaxHeight="50" Margin="5" 
+                                Background="#CC119EDA" BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for saving changes on the selected classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button 
+                                Content="Clear" FontSize="10" 
+                                Width="100" MaxHeight="50" Margin="5"
+                                Background="#CC119EDA"  BorderBrush="{x:Null}">
+                            <Button.ToolTip>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        This button is for adding new classroom.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
+
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="2" Grid.Row="2"
                                 Orientation="Horizontal" HorizontalAlignment="Center">
 
                         <Button Click="SoftwareUpdateBtn_Click"
