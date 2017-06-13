@@ -110,7 +110,6 @@ namespace HCI2
             listaUcionica = new ObservableCollection<Classroom>(this.appConfig.Classrooms);
             Classroom_DG.ItemsSource = null;
             Classroom_DG.ItemsSource = listaUcionica;
-            //Classroom_DG.Columns[8].Visibility;
         }
 
         public void classroomOS_CB_init()
@@ -1075,6 +1074,18 @@ namespace HCI2
             {
                 e.Column = null;
             }
+            if (e.PropertyName == "Id")
+            {
+                e.Column.Header = "Classroom ID";
+            }
+            if (e.PropertyName == "NumberOfWorkplace")
+            {
+                e.Column.Header = "Seats";
+            }
+            if (e.PropertyName == "SmartBoart")
+            {
+                e.Column.Header = "Smart Board";
+            }
         }
 
         private void DataGrid1_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -1091,6 +1102,18 @@ namespace HCI2
             {
                 e.Column = null;
             }
+            if (e.PropertyName == "NumberOfMembers")
+            {
+                e.Column.Header = "Number Of Members";
+            }
+            if (e.PropertyName == "CurrentNumber")
+            {
+                e.Column.Header = "Scheduling";
+            }
+            if (e.PropertyName == "SmartBoard")
+            {
+                e.Column.Header = "Smart Board";
+            }
         }
 
         private void DataGrid2_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -1098,6 +1121,18 @@ namespace HCI2
             if (e.PropertyName == "OperatingSystem")
             {
                 e.Column = null;
+            }
+            if (e.PropertyName == "ProductionYear")
+            {
+                e.Column.Header = "Production Year";
+            }
+        }
+
+        private void DataGrid3_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyName == "DateFoundation")
+            {
+                e.Column.Header = "Date of Foundation";
             }
         }
     }
