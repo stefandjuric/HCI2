@@ -857,56 +857,6 @@
                                     <ComboBox Grid.Column="1" x:Name="SubjectOS_CB" FontSize="12" SelectedIndex="0" local:HelpProvider.HelpKey="SubjectOS_CB"/>
                                 </Grid>
 
-                                <!-- Subject needed software -->
-                                <Grid Style="{StaticResource LargeBottomMargin}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
-                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-
-                                    <Label Grid.Column="0" Grid.Row="0" Content="Software:" Style="{StaticResource LabelStyle}"/>
-
-                                    <Grid Grid.Column="1" Grid.Row="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="3*"/>
-                                            <ColumnDefinition Width="1.3*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-
-                                        <ComboBox Grid.Column="0" Grid.Row="0"
-                                                  x:Name="SubjectSoftware_CB" 
-                                                  FontSize="12" local:HelpProvider.HelpKey="SubjectSoftware_CB"/>
-
-                                        <Button Grid.Column="1" Grid.Row="0"
-                                                Content="Add" Margin="5,0,0,0"
-                                                Background="#CC119EDA" BorderBrush="{x:Null}" Click="SubjectAddSoftwareBtn_Click"/>
-                                    </Grid>
-
-
-                                    <Label Grid.Column="0" Grid.Row="1" Content="Added:" Style="{StaticResource LabelStyle}"/>
-
-                                    <ListBox Grid.Column="1" Grid.Row="1"
-                                             x:Name="SubjectCurrentSoftware_LB"
-                                             Style="{StaticResource ListBoxStyle}"
-                                             local:HelpProvider.HelpKey="SubjectCurrentSoftware_LB">
-                                        <ListBox.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Remove" Click="MenuItem_Click_1" />
-                                            </ContextMenu>
-                                        </ListBox.ContextMenu>
-                                    </ListBox>
-                                    
-
-                                </Grid>
-
                                 <!-- Subject projector -->
                                 <Grid Style="{StaticResource SmallBottomMargin}">
                                     <Grid.ColumnDefinitions>
@@ -928,13 +878,62 @@
                                 </Grid>
 
                                 <!-- Subject smartboard -->
-                                <Grid Style="{StaticResource SmallBottomMargin}">
+                                <Grid Style="{StaticResource LargeBottomMargin}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
                                         <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Content="Smart board:" Style="{StaticResource LabelStyle}"/>
+                                    <Label Grid.Column="0" Content="Smartboard:" Style="{StaticResource LabelStyle}"/>
                                     <CheckBox Grid.Column="1" x:Name="SubjectSmartBoard_CB" HorizontalAlignment="Center"/>
+                                </Grid>
+
+                                <!-- Subject needed software -->
+                                <Grid Style="{StaticResource LargeBottomMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Style="{StaticResource LabelColumnStyle}"/>
+                                        <ColumnDefinition Style="{StaticResource DataColumnStyle}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="0" Content="Software:" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                                           Style="{StaticResource LabelStyle}"/>
+
+                                    <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="1.3*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <ComboBox Grid.Column="0" Grid.Row="0"
+                                                  x:Name="SubjectSoftware_CB" 
+                                                  FontSize="12" local:HelpProvider.HelpKey="SubjectSoftware_CB"/>
+
+                                        <Button Grid.Column="1" Grid.Row="0"
+                                                Content="Add" Margin="5,0,0,0"
+                                                Background="#CC119EDA" BorderBrush="{x:Null}" Click="SubjectAddSoftwareBtn_Click"/>
+                                    </Grid>
+
+                                    <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
+                                             x:Name="SubjectCurrentSoftware_LB"
+                                             Style="{StaticResource ListBoxStyle}"
+                                             local:HelpProvider.HelpKey="SubjectCurrentSoftware_LB">
+                                        <ListBox.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Remove" Click="MenuItem_Click_1" />
+                                            </ContextMenu>
+                                        </ListBox.ContextMenu>
+                                    </ListBox>
+
+
                                 </Grid>
 
 
